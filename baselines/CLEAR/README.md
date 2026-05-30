@@ -43,6 +43,22 @@ python whisper_fine.py \
 - Theo dõi log: `tensorboard --logdir whisper_prompt_2_results/`.
 - GPU: script dùng `CUDA_VISIBLE_DEVICES=0` (sửa ở đầu `whisper_fine.py` nếu cần card khác).
 
+### Submit lên SLURM (A100)
+
+```bash
+mkdir -p logs
+sbatch submit-job.sh
+```
+
+Theo dõi job:
+
+```bash
+squeue -u $USER          # xem trạng thái job
+tail -f logs/train_<JOB_ID>.out   # xem log realtime
+```
+
+`submit-job.sh` request 1× A100, 8 CPU, 80 GB RAM. Điều chỉnh `--mem-per-cpu` hoặc `--batch` nếu OOM.
+
 > Dữ liệu hiện chỉ có train + test (không có blind set), nên eval và test đều dùng `test.csv`.
 
 ### Baseline Whisper fine-tune thường (không prompt)
