@@ -1,7 +1,7 @@
 import warnings
 warnings.filterwarnings("ignore")
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 from datasets import Audio
 import torch
@@ -61,9 +61,9 @@ if __name__ == '__main__':
         data_test = PromptWhisperDataset(base_path=os.path.join(data_root,"ocw/"), phase='test', feature_extractor=feature_extractor, audio_type=".mp3", tokenizer=tokenizer, prompt=args.prompt, basic=args.basic)
     
     elif args.dataset == 'mucs':
-        data_train = CodeMixedWhisperDataset(csv_path=os.path.join(data_root,"train_output_with_context_mod.csv"), dataset_name='mucs', feature_extractor=feature_extractor, tokenizer=tokenizer, prompt=args.prompt, train=True) 
-        data_eval = CodeMixedWhisperDataset(csv_path=os.path.join(data_root,"test_output_with_context_deleted_entries.csv"), dataset_name='mucs', feature_extractor=feature_extractor, tokenizer=tokenizer, prompt=args.prompt, train=False)
-        data_test = CodeMixedWhisperDataset(csv_path=os.path.join(data_root,"blind_data_mod.csv"), dataset_name='mucs', feature_extractor=feature_extractor, tokenizer=tokenizer, prompt=args.prompt, train=False, test=True)  
+        data_train = CodeMixedWhisperDataset(csv_path=os.path.join(data_root,"train.csv"), dataset_name='mucs', feature_extractor=feature_extractor, tokenizer=tokenizer, prompt=args.prompt, train=True)
+        data_eval = CodeMixedWhisperDataset(csv_path=os.path.join(data_root,"test.csv"), dataset_name='mucs', feature_extractor=feature_extractor, tokenizer=tokenizer, prompt=args.prompt, train=False)
+        data_test = CodeMixedWhisperDataset(csv_path=os.path.join(data_root,"test.csv"), dataset_name='mucs', feature_extractor=feature_extractor, tokenizer=tokenizer, prompt=args.prompt, train=False, test=True)
 
     elif args.dataset == 'sarabhai':
         # sarabhai dataset

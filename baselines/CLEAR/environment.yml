@@ -1,0 +1,34 @@
+name: CLEAR
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      # PyTorch (bản wheel mặc định trên Linux đã kèm CUDA, chạy được A100)
+      - numpy<2
+      - torch==2.2.2
+      - torchaudio==2.2.2
+      # HuggingFace stack (giữ đúng phiên bản để tương thích fork transformers_prompt)
+      - transformers==4.39.0
+      - tokenizers==0.15.2
+      - huggingface-hub==0.23.2
+      - accelerate>=0.21.0
+      - datasets
+      - evaluate
+      # tiện ích training/metric
+      - jiwer
+      - editdistance
+      - rapidfuzz
+      - regex
+      - more_itertools
+      - loralib
+      - av
+      - soundfile
+      - pandas
+      - tqdm
+      - tensorboard
+      - tensorboardX
+      # rescoring bằng OpenAI + đọc OPENAI_API_KEY từ .env
+      - openai
+      - python-dotenv

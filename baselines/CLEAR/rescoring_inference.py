@@ -10,8 +10,11 @@ import argparse
 import openai
 import time
 import random
+from dotenv import load_dotenv
 
 
+# Đọc biến môi trường từ file ./.env (vd: OPENAI_API_KEY=...)
+load_dotenv()
 # Set your OpenAI API key
 
 parser = argparse.ArgumentParser(description='Hypotheses Rescoring')
@@ -45,9 +48,10 @@ elif args.rescorer == "mistral":
     rescorer_model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1",).to('cuda')
     rescorer_tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
 
-# old api key = REMOVED_OPENAI_KEY
 elif args.rescorer == "gpt3.5":
-    openai.api_key = "REMOVED_OPENAI_KEY"
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
+    if not openai.api_key:
+        raise ValueError("Thiếu OPENAI_API_KEY. Hãy đặt trong file ./.env")
 
 
 

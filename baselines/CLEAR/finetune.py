@@ -47,7 +47,7 @@ if __name__ == '__main__':
     tokenizer = WhisperTokenizer.from_pretrained(f'openai/whisper-{args.model}', language='hi', task='transcribe')
     processor = WhisperProcessor.from_pretrained(f'openai/whisper-{args.model}', language='hi', task='transcribe')
     
-    data_root = "/home/aseems/Improving-ASR-with-LLM-Description/data"
+    data_root = "./data"
     
     if args.dataset == 'earning':
         data_train = PromptWhisperDataset(base_path=os.path.join(data_root,"Earnings_Call/"), phase='train', feature_extractor=feature_extractor, audio_type=".mp3", tokenizer=tokenizer, prompt=args.prompt, random=args.random)
@@ -60,9 +60,9 @@ if __name__ == '__main__':
         data_test = PromptWhisperDataset(base_path=os.path.join(data_root,"ocw/"), phase='test', feature_extractor=feature_extractor, audio_type=".mp3", tokenizer=tokenizer, prompt=args.prompt, basic=args.basic)
     
     elif args.dataset == 'codemixed':
-        data_train = CodeMixedWhisperDataset_V2(csv_path=os.path.join(data_root,"train_output_with_context_mod.csv"), feature_extractor=feature_extractor, tokenizer=tokenizer) 
-        data_eval = CodeMixedWhisperDataset_V2(csv_path=os.path.join(data_root,"test_output_with_context_deleted_entries.csv"), feature_extractor=feature_extractor, tokenizer=tokenizer)
-        data_test = CodeMixedWhisperDataset_V2(csv_path=os.path.join(data_root,"blind_data_mod.csv"), feature_extractor=feature_extractor, tokenizer=tokenizer)  
+        data_train = CodeMixedWhisperDataset_V2(csv_path=os.path.join(data_root,"train.csv"), feature_extractor=feature_extractor, tokenizer=tokenizer)
+        data_eval = CodeMixedWhisperDataset_V2(csv_path=os.path.join(data_root,"test.csv"), feature_extractor=feature_extractor, tokenizer=tokenizer)
+        data_test = CodeMixedWhisperDataset_V2(csv_path=os.path.join(data_root,"test.csv"), feature_extractor=feature_extractor, tokenizer=tokenizer)
 
     else:
         raise ValueError("Wrong dataset")
