@@ -221,6 +221,6 @@ __marimo__/
 debug/
 stuff/
 
-baselines/CLEAR/data/test/
-baselines/CLEAR/data/train/
-baselines/CLEAR/data/subtask2_blindtest_wReadme/
+baselines/models/CLEAR/data/test/
+baselines/models/CLEAR/data/train/
+baselines/models/CLEAR/data/subtask2_blindtest_wReadme/
