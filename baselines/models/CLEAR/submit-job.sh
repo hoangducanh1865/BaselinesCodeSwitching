@@ -9,7 +9,7 @@
 #SBATCH --mem-per-cpu=10g
 #SBATCH --gres=gpu:a100:1
 
-cd /home/user14/anhhd/asr/BaselinesCodeSwitching/baselines/CLEAR
+cd /home/user14/anhhd/asr/BaselinesCodeSwitching/baselines/models/CLEAR
 
 source /home/user14/miniconda3/bin/activate CLEAR
 
