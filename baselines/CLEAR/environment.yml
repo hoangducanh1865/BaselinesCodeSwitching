@@ -5,6 +5,7 @@ dependencies:
   - python=3.10
   - pip
   - pip:
+      - --no-cache-dir
       # PyTorch (bản wheel mặc định trên Linux đã kèm CUDA, chạy được A100)
       - numpy<2
       - torch==2.2.2
